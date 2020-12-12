@@ -9,7 +9,7 @@ import labseven.list.SinglyLinkedList;
  * different number of rounds for different methods of SinglyLinkedList.
  *
  * @author Janyl Jumadinova
- * @author Add Your Name Here
+ * @author Peter Snipes
  */
 
 public class Experiment {
@@ -36,8 +36,16 @@ public class Experiment {
   /** Run the experiment campaigns for an algorithm in a SinglyLinkedList. */
   public static void main(String[] args) {
     // call the method that runs the experiment
+    RunCampaign runComputationCampaign = new RunCampaign();
+    // call the method that runs the experiment
+    SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+    ResultsTable resultsTable =
+    runComputationCampaign.run(list, TOSTRING_CAMPAIGN, operation);
+    System.out.println();
+    System.out.println("Results of an experiment campaign");
+    System.out.println(resultsTable.toString());
+    System.out.println();
     runExperiments("toString");
-    // TODO: Call the method that will run the experiment for your recursive method
   }
 
 }

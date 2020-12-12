@@ -30,7 +30,7 @@ package labseven.list;
  * @author Roberto Tamassia
  * @author Michael H. Goldwasser
  * @author Janyl Jumadinova
- * @author Add Your Name Here
+ * @author Peter Snipes
  */
 
 public class SinglyLinkedList<E> implements Cloneable {
@@ -40,7 +40,7 @@ public class SinglyLinkedList<E> implements Cloneable {
   * element and to the subsequent node in the list (or null if this
   * is the last node).
   */
-  // TODO: Make sure that you understand how a Node class
+  // Make sure that you understand how a Node class
   // declaration is "nested" inside of the SinglyLinkedList
   private static class Node<E> {
 
@@ -49,24 +49,25 @@ public class SinglyLinkedList<E> implements Cloneable {
 
     /** A reference to the subsequent node in the list. */
     private Node<E> next;
+    //Is a private Node.
+    //Node
 
-    // TODO: Add the required JavaDoc comment.
     public Node(E element, Node<E> next) {
       this.element = element;
       this.next = next;
     }
 
-    // TODO: Add the required JavaDoc comment.
+    // //Declaringing the elements and next to be methods.
     public E getElement() {
       return element;
     }
 
-    // TODO: Add the required JavaDoc comment.
+    // returning the elements method.
     public Node<E> getNext() {
       return next;
     }
 
-    // TODO: Add the required JavaDoc comment.
+    // returning the next method.
     public void setNext(Node<E> next) {
       this.next = next;
     }
@@ -131,7 +132,14 @@ public class SinglyLinkedList<E> implements Cloneable {
    * @param element the new element to add
    */
   public void addFirst(E element) {
-    // TODO: add a full implementation of the addFirst method
+    head = new Node<>(element, head);
+    if(size == 0) {
+      tail = head;
+    }
+    size++;
+  }
+
+    // add a full implementation of the addFirst method
     // Please consult your textbook and class activity 11
   }
 
@@ -140,7 +148,16 @@ public class SinglyLinkedList<E> implements Cloneable {
    * @param element the new element to add
    */
   public void addLast(E element) {
-    // TODO: add a full implementation of the addLast method
+    Node<E> newest = new Node<>(element, null);
+    if (isEmpty()) {
+      head = newest;
+    } else {
+      tail.setNext(newest);
+    }
+    tail = newest;
+    size++;
+  }
+    // add a full implementation of the addLast method
     // Please consult your textbook and class activity 11
   }
 
@@ -149,12 +166,23 @@ public class SinglyLinkedList<E> implements Cloneable {
    * @return the removed element (or null if empty)
    */
   public E removeFirst() {
-    // TODO: add a full implementation of the removeFirst method
+    if (isEmpty()) {
+      return null;
+    }
+    final E answer = head.getElement();
+    head = head.getNext();
+    size--;
+    if (size == 0) {
+      tail = null;
+    }
+    return answer;
+  }
+    // add a full implementation of the removeFirst method
     // Please consult your textbook and class activity 11
   }
 
-  /** TODO: Add recursive function's Javadoc comment.
-  // TODO: add a full implementation of a recursive function
+  //Add recursive function's Javadoc comment.
+  // add a full implementation of a recursive function
   // of your choice using Singly Linked List
 
   /**

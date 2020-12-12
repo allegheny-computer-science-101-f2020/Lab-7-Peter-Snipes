@@ -9,7 +9,7 @@ import java.util.Random;
  * A RunCampaign class that can run an experiment with a computer.
  *
  * @author Janyl Jumadinova
- * @author Add Your Name Here
+ * @author Peter Snipes
  */
 
 public class RunCampaign implements Campaign {
@@ -53,10 +53,19 @@ public class RunCampaign implements Campaign {
     } else { // recursive
       System.out.println("Starting a campaign of experiments with " + operation + " ...");
       while (campaignRound < campaignLength) {
-        // TODO: populate the SinglyLinkedList with the data
-        // TODO: run the experiment on your recursive method
-        // TODO: store the result and produce the debugging information
-        // TODO: increase the size and go to the next campaignRound
+        list = new SinglyLinkedList<String>();
+        populateList(list, currentInputSize);
+        // run the experiment on the toString method
+        long timeBefore = System.currentTimeMillis();
+        String textualRepresentation = list.toString();
+        long timeAfter = System.currentTimeMillis();
+        long timeElapsed = timeAfter - timeBefore;
+        // store the result and produce the debugging information
+        results.addResult((long)currentInputSize, timeElapsed);
+        System.out.println(IDENTATION + "Running round " + campaignRound
+            + " with input size " + currentInputSize);
+        currentInputSize = currentInputSize * INPUT_GROWTH_FACTOR;
+        campaignRound++;
       }
       System.out.println("... Finishing a campaign of experiments with " + operation);
       return results;
